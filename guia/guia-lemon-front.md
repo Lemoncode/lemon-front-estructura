@@ -707,6 +707,23 @@ Aquí tenemos una apuesta clara: **Material UI** razones por que la usamos:
 
 En nuestro caso llevamos varios años usando esta librería, y nos ha dado muy buenos resultados, tanto en proyectos internos, como usándola como wrapper para montar librerías de componentes tematizadas (imagen corporativa) para nuestros clientes.
 
+### Gestión de formularios
+
+Aquí hemos trabajado con diferentes opciones:
+
+- Tenemos compañeros que prefieren no utilizar librerías de este tipo ya que al final se encuentran con _casos arista_ que les hacen tener que implementar _hacks_ para que puedan cubrir su caso.
+- Hemos trabajado con **React Final Form**: esta librería es muy potente, y cubre muchos casos estándares, pero te puedes encontrar algunos escenarios complicados como hacer que una validación se dispare sólo al cambiar de campo (esto es importante en las asíncronas), y también se puede volver complejo el manejo de validaciones con arrays.
+- Otra que hemos cubierto es **Formik**, esta librería es muy parecida a **Final Form**, y le hemos encontrado problemas similares.
+- Para finalizar una tercera que estamos probando en proyectos internos a **React hooks forms** la estamos probando en casos avanzados de validaciones con diferentes niveles y arrays, en estos casos hemos tenido problemas de rendimiento y hemos tenido que realizar algunos hacks.
+
+La conclusión actual que tenemos:
+
+- Para formularios estándares, las tres opciones son válidas.
+- En el momento en que nos metemos en casos avanzados las tres necesitan de soluciones o hacks complejos.
+- La que ahora parece que tiene más tracción en la comunidad e **React hook forms**
+
+¿Quieré esto decir que no debo de usar ninguna de ellas? La respuesta es NO, estás librerías suelen resolver muchos problemas, y salvo que los formularios que vayas a utilizar sean muy complejos, es buena idea utilizarlas, resuelven muchos problemas, y nos ahorran tiempo de desarrollo.
+
 ### Validación de formularios
 
 En este caso hay varias opciones en el mercado, una de ellas es **yups**, en su momento evaluamos dicha librería y no nos convenció, decidimos armar la nuestra **Fonk** (basada en un desarrollo previo que relizamos **lcValidacionSummary**), razones por las que la usamos:
