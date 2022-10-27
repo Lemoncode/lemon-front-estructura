@@ -2,7 +2,7 @@
 
 <img src="../content/logo.png" width="120px">
 
-versión: 0.1
+versión: 0.12
 
 Fecha de publicación: 27 de Octubre de 2022
 
@@ -21,6 +21,7 @@ Tópicos de esta guía:
 - Nombrando eventos y propiedades _callbacks_.
 - Principio de promoción.
 - Política de pruebas unitarias.
+- Librerías de terceros y frameworks
 - Herramientas
 
 # Nombrando y creando carpetas
@@ -643,6 +644,84 @@ En nuestro caso, la decisión que tomamos es:
   - API.
 - También aconsejamos realizar pruebas unitarias de _common_ y _core_, ya que es base de código que se va a usar de forma pesada en la aplicación.
 - El resto lo cubrimos con e2e _testing_ (_cypress_).
+
+# Librerías de terceros y frameworks
+
+## Librerías
+
+### Proceso de elección de librería
+
+Elegir que librería usar para un proyecto es un decisión muy complicada, normalmente tenemos varias opciones
+que elegir, y no es fácil saber cual es la opción más adecuada ya que influyen muchos factores.
+
+Lo primero que hacemos cuando tenemos varias librerías que nos pueden servir para resolver un problema
+es realizar una **evaluación rápida**:
+
+- Lo primero que evaluamos es la licencia del proyecto ¿Es licencia MIT? Aquí nos podemos encontrar con un problema si esa librería tiene una licencia restrictiva (podría ser que no permitiera el uso comercial o que tuviéramos que publicar nuestro código fuente como open source)
+
+- Uno obvio es el número de estrellas que tiene el proyecto, un proyecto con un buen número de estrellas suele querer decir que es un proyecto que lo ha usado bastante gente y que seguramente encontramos bastante ayuda en _StackOverflow_.
+
+- Otro factor importante ¿Cómo de actualizado está el proyecto? Vamos a ver cuándo se hizo la última _release_ y cómo de actualizado está el proyecto, ya que igual en su día fue muy popular, pero ahora se encuentra abandonado (igual no es compatible con la última versión de React, o tiene fallos de seguridad que no se han corregido...).
+
+- Otro tema interesante es comparar el flujo de descargas de _npm trends_, aquí sacamos una gráfica de descargas (por cierto muy divertido ver el bajón de descargas en el periodo navideño), aquí podemos descargar cual es la que más descargas tienes y cómo evoluciona a lo largo del tiempo (que no quiere decir que sea la mejor...)
+
+- Es buena idea fijarnos en el autor y grupo que ha desarrollado la librería:
+
+  - Si es un autor de otras librerías de renombre podemos esperar que la librería tenga cierta calidad.
+  - Si pertenece a un grupo de autores y además cuenta con un buen _sponsorship_, podemos esperar que la librería tenga su mantenimiento.
+  - Si es de una empresa (_Facebook_, _Microsoft_, _Google_, _Air Bnb_) podemos esperar un código supuestamente de calidad, y en cuanto a mantenimiento depende, puede que mientras le haga falta tenga una evolución perfecta, en cuanto no puede entrar en vía muerta.
+
+- También es importante evaluar el readme y ver que ofrece, igual nos encontramos de primeras que el proyecto ya no tiene mantenimiento oficial.
+
+- Seguimos con temas técnicos, evaluar que funcionalidad ofrece, y que queremos implementar.
+
+- Es importante ver que material de aprendizaje tiene:
+
+  - Documentación.
+  - Video tutoriales.
+  - Posts de terceros.
+  - ...
+
+- Otro tema a tener en cuenta es hacer un audit de la librería y ver si tiene dependencias anticuadas etc...
+
+Todo esto nos puede servir para descartar alguna opción (licencia no valida, librería discontinuada), pero son pruebas menores, la prueba real está en probar la librería, en caso de que sea necesidad de un proyecto, pedir tiempo de _spike_ y requerimientos que debe cumplir la misma y montar una prueba de concepto para ver hasta donde llega y que tal se porta.
+
+### Librerías que usamos en Lemoncode
+
+A fecha de hoy usamos una serie de librerías en mayor o menor grado, ya que este es un ecosistema volátil, esta lista puede cambiar a corto plazo.
+
+#### Librería de componentes
+
+Aquí tenemos una apuesta clara: **Material UI** razones por que la usamos:
+
+- Es una librería veterana que se encuentra en un estado maduro.
+- Tiene una gran comunidad detrás.
+- Es popular.
+- Tiene una gran documentación (incluye ejemplos en vivo codesandboxes).
+- Da buena solución a temas avanzados como la accesibilidad.
+- Tiene una gran variedad de componentes.
+- Tiene una solución de tematizado muy versátil.
+- Tiene un buen grupo de backers.
+- Tiene una evolución estable (librería core de material ui, y lab para nuevos componentes que cuando están estables de pasan al core)
+- Su solución comercial se basa en vender tematizado, soporte, y una parte premium.
+
+En nuestro caso llevamos varios años usando esta librería, y nos ha dado muy buenos resultados, tanto en proyectos internos, como usándola como wrapper para montar librerías de componentes tematizadas (imagen corporativa) para nuestros clientes.
+
+### Validación de formularios
+
+En este caso hay varias opciones en el mercado, una de ellas es **yups**, en su momento evaluamos dicha librería y no nos convenció, decidimos armar la nuestra **Fonk** (basada en un desarrollo previo que relizamos **lcValidacionSummary**), razones por las que la usamos:
+
+- Es una librería agnostica de framework / librería, está desarrollada en JavaScript Plano.
+- Pesa menos de 6Kb gzipeada.
+- Incluye conectaros para librerías de gestión de formularios como **Formik** o **React Final Form** (React Hook forms en progreso).
+- Esta basada en un ecosistema de microvalidadores (librerías externas que hemos desarrollado), también permite crear validaciones custom, tanto síncronas como asíncronas.
+- La hemos rodado en multitud de proyectos tanto internos como externos.
+
+## Frameworks
+
+### Proceso de elección de framework
+
+### Frameworks que usamos en Lemoncode
 
 # Herramientas
 
