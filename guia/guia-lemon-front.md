@@ -42,7 +42,7 @@ ya los IDE y herramientas de desarrollo lo suelen resaltar es
 posible que se nos pase este detalle y por ejemplo tener
 que el _build_ local en máquinas Windows funciona, pero en CI en una
 máquina Linux, y este fallo es muy complicado de depurar ya que
-si nadie tiene una máquina Linux / Mac OS en local.
+casi nadie tiene una máquina Linux / Mac OS en local.
 
 Podéis ver en muchos proyectos _open source_ que no siguen esta aproximación,
 nosotros lo entendemos así porque en el resto de Europa y en USA la mayoría
@@ -79,7 +79,7 @@ Por ejemplo:
 
 - Tenemos una carpeta `*components*`, de primeras vamos soltando componentes aquí. Conforme esta carpeta vaya creciendo en contenido, se irá haciendo más grande, por lo que hará falta refactorizarla y agrupar componentes comunes en subcarpetas.
 
-- Tenemos debajo de _components_, un componente de _layout_, otro de que _wrapea_ un _input_, un _combobox_, una lista... esos componentes serán candidatos de agruparlos en la carpeta `components/form`, sin embargo la de layout mientras no crezca no lo planteamos.
+- Tenemos debajo de _components_, un componente de _layout_, otro que _wrapea_ un _input_, un _combobox_, una lista... esos componentes serán candidatos para ser agruparlos en la carpeta `components/form`, sin embargo la de layout mientras no crezca no lo planteamos.
 
 Siguiendo esta aproximación, nos evitamos tener una estructura de carpetas de las que hay veces que sólo cuelga un fichero, este mal se llama "el principio de clarividencia del programador", a priori en muchos escenarios no sabemos por dónde va a crecer el proyecto.
 
@@ -89,7 +89,7 @@ Es malo tanto tener muchas carpetas y profundidad sin contenido, como tener poca
 
 A nivel de carpetas, salvo que estemos hablando de adjetivos o términos no contables (_common_, _core_), utilizaremos el plural, ya que las carpetas suelen agrupar elementos (_components_, _scenes_, _layouts_).
 
-Siguiendo esta aproximación mientras que es más natural usar el prural en las carpetas, en los ficheros usaremos siempre el singular.
+Siguiendo esta aproximación mientras que es más natural usar el plural en las carpetas, en los ficheros usaremos siempre el singular.
 
 ## Uso de ficheros barrel
 
@@ -141,7 +141,7 @@ my-application/
 │  │  ├─ scenes/
 ```
 
-Aquí, dependiendo de como se enfoque, cada submódulo podrían compartir _concerns_ comunes.
+Aquí, dependiendo de cómo se enfoque, cada submódulo podrían compartir _concerns_ comunes.
 
 <div style="page-break-before:always"></div>
 
@@ -349,7 +349,7 @@ pod/
 
 En este caso podemos plantear crear una carpeta _api_ si vamos a tener varios ficheros que monten la api para este _pod_.
 
-De la misma manera, si con el _root container_ y _component_ no tenemos suficiente, es buena idea crear una carpeta _components_ para agrupar los subcomponentes que se usen en el pod (y si hubieran muchos agruparlos a su vez por funcionalidad).
+De la misma manera, si con el _root container_ y _component_ no tenemos suficiente, es buena idea crear una carpeta _components_ para agrupar los subcomponentes que se usen en el pod (y si hubiera muchos agruparlos a su vez por funcionalidad).
 
 A nivel de ficheros, dependiendo de la complejidad del pod, iremos creando ficheros con funcionalidades independientes o rompiendo en carpetas si estas funcionalidades pueden ser agrupadas. Lo importante es no crear ficheros porque sí, sino ir agrupando funcionalidades en la medida de lo posible.
 
@@ -453,18 +453,18 @@ En cuanto a _casing_ siempre usamos _lowercase_ (minúsculas) para nombrar los f
 ¿A qué se debe esta complejidad?
 
 - De esta manera podemos identificar de manera clara la funcionalidad del fichero (ésta se encuentra descrita al principio del fichero).
-- De la misma forma ocurrirá con la definición técnica o tipado del fichero. Ésta se encontrará al final. Además, al reutilizar este sistema de nomeclatura de manera sistemática, los ficheros podrán ser filtrados de manera mucho más eficiente según distintos criterios de búsqueda.
+- De la misma forma ocurrirá con la definición técnica o tipado del fichero. Ésta se encontrará al final. Además, al reutilizar este sistema de nomenclatura de manera sistemática, los ficheros podrán ser filtrados de manera mucho más eficiente según distintos criterios de búsqueda.
 
 Por ejemplo:
 
 ```tsx
-my - calendar.component.tsx;
-my - calendar.business.tsx;
-my - calendar.hooks.tsx;
-my - calendar.styles.css;
+my-calendar.component.tsx;
+my-calendar.business.tsx;
+my-calendar.hooks.tsx;
+my-calendar.styles.css;
 ```
 
-En cuanto a los sufijos a usar en la parte técnica del fichero, dependerá de los que el equipo vean oportunos. Algunos de los que solemos usar:
+En cuanto a los sufijos a usar en la parte técnica del fichero, dependerá de los que el equipo vea oportuno. Algunos de los que solemos usar:
 
 - **.container.tsx**: Para componentes contenedores, es decir, que tienen lógica y presentación.
 
@@ -485,7 +485,7 @@ En cuanto a los sufijos a usar en la parte técnica del fichero, dependerá de l
 
 - **.vm.ts**: Para definir el modelo de la vista. Mientras habrá ocasiones en que ese módulo sea un mapeo directo de lo que nos traemos de la API (sobre todo si los que desarrollan la API son los mismos que desarrollan la aplicación), en otros casos puede ser que tengamos que mapear valores y realizar transformaciones para que se ajusten a la vista (esa complejidad la sacamos de la UI y la pasamos a una función pura JS, fácil de probar).
 
-A pesar de que en las carpetas podíamos definir si usar singulares y prurales, en los ficheros, en los ficheros consideramos recomendable usar el singular únicamente (aunque esto depende de lo que decida el equipo). Así evitamos la siguiente fuente de fallo (muy común):
+A pesar de que en las carpetas podíamos definir si usar singulares y plurales, en los ficheros consideramos recomendable usar el singular únicamente (aunque esto depende de lo que decida el equipo). Así evitamos la siguiente fuente de fallo (muy común):
 
 ```txt
 client.component.tsx
@@ -529,7 +529,7 @@ Es decir, salvo funcionalidades _cross/común_ (que las movemos a carpetas raíz
 
 Así pues (salvo funcionalidad común), un pod tiene:
 
-- Definidas a qué API's va a acceder y qué modelo de datos de api va a consumir.
+- Definidas a qué API's va a acceder y qué modelo de datos de API va a consumir.
 - Definidas qué _ViewModels_ va a usar.
 - Definido su contenedor, componentes y subcomponentes.
 - Definido su modelo y validaciones.
@@ -546,7 +546,7 @@ De esta manera:
 
 Sobre la separación de ficheros dentro de un mismo pod, al igual que que comentamos en la sección de "_Nombrando y creando ficheros_", la idea es separar el _pod_ en piezas que hagan una sola cosa.
 
-Además, dentro de los pods, un tema muy importante a la hora de definir los _ViewModels_ es que no debo importar en un pod un _ViewModel_ de otro _pod_. Por muy parecido que sea tengo que volver a crearlo ¿Por qué? Por no quiero tener acoplamientos entre _pods_. Una situación distinta es tener un _ViewModel_ que se use a lo largo de toda la aplicación (por ejemplo un _Lookup Id/Valor_), en cuyo caso deberá promocionarse a _core/model_ o _core/vm_, lo que mejor encaje con el equipo.
+Además, dentro de los pods, un tema muy importante a la hora de definir los _ViewModels_ es que no debo importar en un pod un _ViewModel_ de otro _pod_. Por muy parecido que sea tengo que volver a crearlo ¿Por qué? Porque no quiero tener acoplamientos entre _pods_. Una situación distinta es tener un _ViewModel_ que se use a lo largo de toda la aplicación (por ejemplo un _Lookup Id/Valor_), en cuyo caso deberá promocionarse a _core/model_ o _core/vm_, lo que mejor encaje con el equipo.
 
 Para aprender más sobre este tipo de solución, tenemos repositorios y formaciones específicas para esto.
 
@@ -559,7 +559,7 @@ Desventajas de los pods:
 
 ¿Qué pasa si empiezo a tener muchos _pods_? Aquí me puedo plantear crear una carpeta superior de "modules" y agrupar por funcionalidad (ver sección carpeta)
 
-# Nombrando funciones, eventos callbacks...
+# Nombrando funciones, eventos, callbacks...
 
 Nombrar elementos de código, es una tarea complicada y la base para que un desarrollador (o el propio programador una semana después) pueda entender ese código o seguirlo. Para ello es importante que el equipo esté de acuerdo en seguir una serie de reglas.
 
@@ -568,7 +568,7 @@ Nombrar elementos de código, es una tarea complicada y la base para que un desa
 Sobre los nombres de componentes:
 
 - Como estamos con React siempre tienen que empezar por mayúsculas (los que empiezan por minúsculas están reservados para elementos básicos de HTML).
-- Se debe estudiar si añadir sufijos, si añadir al nombre "_Container_" o "_Component_", etc.dependiendo de lo que estemos nombrando. Esta decisión no es clara y tienes sus pros y cons:
+- Se debe estudiar si añadir sufijos, si añadir al nombre "_Container_" o "_Component_", etc.dependiendo de lo que estemos nombrando. Esta decisión no es clara y tiene sus pros y cons:
   - Pros: Cuando usamos un componente sabemos que lo es "_patientComponent_" porque lo tiene en el nombre (por ejemplo no se confunda con la entidad _Patient_).
   - Cons: Es muy pesado arrastrar "_Component_" para cada componente.
 
@@ -582,7 +582,7 @@ Sobre los nombres de funciones, aquí hay que tener en cuenta que las funciones 
 
 Un tema importante cuando gestionamos eventos es saber de forma fácil qué función maneja un evento en nuestro componente, y cual se burbujea con una _prop_.
 
-Aquí es bueno que el equipo este de acuerdo en seguir una aproximación consistente.
+Aquí es bueno que el equipo esté de acuerdo en seguir una aproximación consistente.
 
 En nuestro caso proponemos nombrar los manejadores de eventos locales con el prefijo _handle_ y los que se burbujean con _props_, con el prefijo _on_, un ejemplo:
 
@@ -637,7 +637,7 @@ El tema del _testing_ es muy controvertido, aquí el equipo debe llegar a un acu
 En nuestro caso, la decisión que tomamos es:
 
 - Trabajar con componentes UI a nivel de aplicación e incluir pruebas unitarias es complicado, ya que se suelen realizar muchos cambios, y se pierde parte de agilidad (_refactors_, etc...). Si detectamos un componente que sea crítico a nivel de aplicación sí que le añadimos pruebas unitarias, sino, delegamos en e2e.
-- Lo bueno es que esos componentes los solemos dejar lo más vacíos posible (_vaciar el cangrejo_), es decir si aplicamos _Unit Testing_ en los siguientes elementos a nivel de aplicación (de ahí la importancia de vaciar los componentes):
+- Lo bueno es que esos componentes los solemos dejar lo más vacíos posible (_vaciar el cangrejo_), es decir, si aplicamos _Unit Testing_ en los siguientes elementos a nivel de aplicación (de ahí la importancia de vaciar los componentes):
   - _Hooks_.
   - Funciones puras y negocio (aquí podemos aplicar TDD)
   - _Mappers_ (aquí aplicamos TDD)
@@ -651,8 +651,8 @@ En nuestro caso, la decisión que tomamos es:
 
 ### Proceso de elección de librería
 
-Elegir que librería usar para un proyecto es un decisión muy complicada, normalmente tenemos varias opciones
-que elegir, y no es fácil saber cual es la opción más adecuada ya que influyen muchos factores.
+Elegir qué librería usar para un proyecto es una decisión muy complicada, normalmente tenemos varias opciones
+que elegir, y no es fácil saber cuál es la opción más adecuada ya que influyen muchos factores.
 
 Lo primero que hacemos cuando tenemos varias librerías que nos pueden servir para resolver un problema
 es realizar una **evaluación rápida**:
@@ -673,18 +673,18 @@ es realizar una **evaluación rápida**:
 
 - También es importante evaluar el readme y ver que ofrece, igual nos encontramos de primeras que el proyecto ya no tiene mantenimiento oficial.
 
-- Seguimos con temas técnicos, evaluar que funcionalidad ofrece, y que queremos implementar.
+- Seguimos con temas técnicos, evaluar qué funcionalidad ofrece, y que queremos implementar.
 
-- Es importante ver que material de aprendizaje tiene:
+- Es importante ver qué material de aprendizaje tiene:
 
   - Documentación.
   - Video tutoriales.
   - Posts de terceros.
   - ...
 
-- Otro tema a tener en cuenta es hacer un audit de la librería y ver si tiene dependencias anticuadas etc...
+- Otro tema a tener en cuenta es hacer un *audit* de la librería y ver si tiene dependencias anticuadas, etc...
 
-Todo esto nos puede servir para descartar alguna opción (licencia no valida, librería discontinuada), pero son pruebas menores, la prueba real está en probar la librería, en caso de que sea necesidad de un proyecto, pedir tiempo de _spike_ y requerimientos que debe cumplir la misma y montar una prueba de concepto para ver hasta donde llega y que tal se porta.
+Todo esto nos puede servir para descartar alguna opción (licencia no válida, librería discontinuada), pero son pruebas menores, la prueba real está en probar la librería, en caso de que sea necesidad de un proyecto, pedir tiempo de _spike_ y requerimientos que debe cumplir la misma y montar una prueba de concepto para ver hasta dónde llega y que tal se porta.
 
 ### Librerías que usamos en Lemoncode
 
@@ -697,11 +697,11 @@ Aquí tenemos una apuesta clara: **Material UI** razones por que la usamos:
 - Es una librería veterana que se encuentra en un estado maduro.
 - Tiene una gran comunidad detrás.
 - Es popular.
-- Tiene una gran documentación (incluye ejemplos en vivo codesandboxes).
+- Tiene una gran documentación (incluye ejemplos en vivo *codesandboxes*).
 - Da buena solución a temas avanzados como la accesibilidad.
 - Tiene una gran variedad de componentes.
 - Tiene una solución de tematizado muy versátil.
-- Tiene un buen grupo de backers.
+- Tiene un buen grupo de *backers*.
 - Tiene una evolución estable (librería core de material ui, y lab para nuevos componentes que cuando están estables de pasan al core)
 - Su solución comercial se basa en vender tematizado, soporte, y una parte premium.
 
@@ -719,19 +719,19 @@ Aquí hemos trabajado con diferentes opciones:
 La conclusión actual que tenemos:
 
 - Para formularios estándares, las tres opciones son válidas.
-- En el momento en que nos metemos en casos avanzados las tres necesitan de soluciones o hacks complejos.
-- La que ahora parece que tiene más tracción en la comunidad e **React hook forms**
+- En el momento en que nos metemos en casos avanzados las tres necesitan de soluciones o *hacks* complejos.
+- La que ahora parece que tiene más tracción en la comunidad es **React hook forms**
 
-¿Quieré esto decir que no debo de usar ninguna de ellas? La respuesta es NO, estás librerías suelen resolver muchos problemas, y salvo que los formularios que vayas a utilizar sean muy complejos, es buena idea utilizarlas, resuelven muchos problemas, y nos ahorran tiempo de desarrollo.
+¿Quiere esto decir que no debo de usar ninguna de ellas? La respuesta es NO, estás librerías suelen resolver muchos problemas, y salvo que los formularios que vayas a utilizar sean muy complejos, es buena idea utilizarlas, resuelven muchos problemas, y nos ahorran tiempo de desarrollo.
 
 ### Validación de formularios
 
-En este caso hay varias opciones en el mercado, una de ellas es **yups**, en su momento evaluamos dicha librería y no nos convenció, decidimos armar la nuestra **Fonk** (basada en un desarrollo previo que relizamos **lcValidacionSummary**), razones por las que la usamos:
+En este caso hay varias opciones en el mercado, una de ellas es ***yups***, en su momento evaluamos dicha librería y no nos convenció, decidimos armar la nuestra ***Fonk*** (basada en un desarrollo previo que realizamos **lcValidacionSummary**), razones por las que la usamos:
 
-- Es una librería agnostica de framework / librería, está desarrollada en JavaScript Plano.
+- Es una librería agnóstica de framework / librería, está desarrollada en JavaScript Plano.
 - Pesa menos de 6Kb gzipeada.
-- Incluye conectaros para librerías de gestión de formularios como **Formik** o **React Final Form** (React Hook forms en progreso).
-- Esta basada en un ecosistema de microvalidadores (librerías externas que hemos desarrollado), también permite crear validaciones custom, tanto síncronas como asíncronas.
+- Incluye conectarnos a librerías de gestión de formularios como **Formik** o **React Final Form** (React Hook forms en progreso).
+- Está basada en un ecosistema de micro validadores (librerías externas que hemos desarrollado), también permite crear validaciones *custom*, tanto síncronas como asíncronas.
 - La hemos rodado en multitud de proyectos tanto internos como externos.
 
 ## Frameworks
@@ -751,5 +751,5 @@ Por otro lado utilizamos la herramienta para gestionar PR del proveedor de _Git_
 Después se pueden añadir herramientas tanto en local y/o _CI/CD_:
 
 - _Linting_: Esto es decisión personal del equipo, a veces puede ser fuente de discusión sobre qué reglas aplicar o no.
-- Herramientas para detección de malos olores en el código (por ejemplo SonarQube)
-- Herramientas para detección de vulnerabilidades y librerías que necesitan actualización (por ejemplo _SonarQube_).
+- Herramientas para detección de malos olores en el código (por ejemplo *SonarQube*)
+- Herramientas para detección de vulnerabilidades y librerías que necesitan actualización (por ejemplo SonarQube).
