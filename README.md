@@ -11,7 +11,9 @@ En este repositorio podrás encontrar una guía de como trabajamos en Lemoncode,
   - Principio de promoción.
   - Política de pruebas unitarias.
   - Herramientas.
-  
+
+Te puedes [descargar la versión actual de la guía pinchando en este enlace](https://github.com/Lemoncode/lemon-front-estructura/raw/main/guia-lemon-front_v0_1_2.pdf)
+
 ## Futuras incorporaciones
 
 Esta guía ademas de ir actualizandose, incluira nuevas secciones:
